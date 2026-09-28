@@ -379,17 +379,17 @@ body.video-active #weiAudioBtn {
 }
 
 .guru-photo {
-  width: 280px;
+  width: 310px;
   max-width: 90%;
   height: auto;
-  aspect-ratio: 738 / 1314;
+  aspect-ratio: 738 / 1311;
   object-fit: contain;
   border-radius: 20px;
+  border: 1px solid rgba(212, 130, 150, 0.25);
   box-shadow: 0 16px 45px rgba(140, 61, 82, 0.25), 0 0 25px rgba(232, 165, 180, 0.2);
-  margin: 24px auto 0;
+  margin: 18px auto 0;
   display: block;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  animation: guruGlow 3s ease-in-out infinite;
 }
 
 /* Guru Blessing Section with Transparent Image and Script Typography */
@@ -490,10 +490,11 @@ body.video-active #weiAudioBtn {
 
 @media screen and (max-width: 600px) {
   .guru-photo {
-    width: 220px;
+    width: 285px;
+    max-width: 88vw;
     height: auto;
-    border-radius: 16px;
-    margin: 20px auto 0;
+    border-radius: 18px;
+    margin: 16px auto 0;
   }
   .guru-blessing-script {
     font-size: 30px;
@@ -1868,10 +1869,11 @@ body.video-active #weiAudioBtn {
 
     /* Guru photo responsive */
     .guru-photo {
-      width: 200px;
+      width: 270px;
+      max-width: 88vw;
       height: auto;
       border-radius: 16px;
-      margin: 20px auto 0;
+      margin: 14px auto 0;
     }
 
     .ganesh-invocation {
