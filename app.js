@@ -508,6 +508,34 @@ document.addEventListener('DOMContentLoaded', () => {
       return (nodeRect.top + nodeRect.height / 2) - contRect.top;
     }
 
+    function updateTrackLines() {
+      const track1 = document.getElementById('timelineTrackLine1');
+      const track2 = document.getElementById('timelineTrackLine2');
+
+      if (!track1 && !track2) return;
+
+      const day1Nodes = document.querySelectorAll('.lotus-event-row:not(.event-date-26) .event-timeline-node');
+      const day2Nodes = document.querySelectorAll('.lotus-event-row.event-date-26 .event-timeline-node');
+
+      if (track1 && day1Nodes.length > 0) {
+        const top1 = getNodeCenterY(day1Nodes[0]);
+        const bot1 = getNodeCenterY(day1Nodes[day1Nodes.length - 1]);
+        track1.style.top = `${top1}px`;
+        track1.style.height = `${Math.max(0, bot1 - top1)}px`;
+      }
+
+      if (track2 && day2Nodes.length > 0) {
+        const top2 = getNodeCenterY(day2Nodes[0]);
+        const bot2 = getNodeCenterY(day2Nodes[day2Nodes.length - 1]);
+        track2.style.top = `${top2}px`;
+        track2.style.height = `${Math.max(0, bot2 - top2)}px`;
+      }
+    }
+
+    updateTrackLines();
+    window.addEventListener('resize', updateTrackLines);
+    window.addEventListener('load', updateTrackLines);
+
     function updateLotusPosition(targetProgress = null, smooth = false) {
       if (isDraggingLotus) return;
 

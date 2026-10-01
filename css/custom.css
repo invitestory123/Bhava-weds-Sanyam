@@ -1178,17 +1178,32 @@ body.video-active #weiAudioBtn {
   padding: 20px 0;
 }
 
-/* Central Vertical Track Line */
+/* Central Vertical Track Line (Supports split lines for Day 1 and Day 2 so line does not go through date) */
 .timeline-track-line {
   position: absolute;
-  top: 15px;
-  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  background: linear-gradient(180deg, rgba(212, 130, 150, 0.3) 0%, rgba(191, 174, 181, 0.85) 20%, rgba(212, 130, 150, 0.9) 50%, rgba(191, 174, 181, 0.85) 80%, rgba(212, 130, 150, 0.3) 100%);
+  background: linear-gradient(180deg, rgba(212, 130, 150, 0.35) 0%, rgba(191, 174, 181, 0.85) 20%, rgba(212, 130, 150, 0.9) 50%, rgba(191, 174, 181, 0.85) 80%, rgba(212, 130, 150, 0.35) 100%);
   border-radius: 2px;
-  z-index: 2;
+  z-index: 1;
+}
+
+/* Fallback positions when two separate tracks are present */
+.timeline-track-line.track-line-day1 {
+  top: 55px;
+  height: 40%;
+}
+
+.timeline-track-line.track-line-day2 {
+  top: 57%;
+  bottom: 25px;
+}
+
+/* Single day fallback */
+.timeline-track-line:not(.track-line-day1):not(.track-line-day2) {
+  top: 15px;
+  bottom: 15px;
 }
 
 /* Scrolling Lotus / Rose Flower Element (Follows scroll down the timeline track & draggable) */
@@ -1280,36 +1295,175 @@ body.video-active #weiAudioBtn {
    z-index: 3;
 }
 
-/* Date Separator between 25th and 26th November */
+/* Date Separator between 25th and 26th November (Clean break without line running through date) */
 .date-separator {
    display: flex;
    align-items: center;
    justify-content: center;
-   gap: 14px;
-   margin: 14px 0;
+   gap: 16px;
+   margin: 28px 0 16px;
    position: relative;
-   z-index: 3;
+   z-index: 5;
    flex-shrink: 0;
+   padding: 4px 0;
+}
+
+.date-separator-pill {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
+   background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(254, 245, 247, 0.96) 100%);
+   border: 1.2px solid rgba(212, 130, 150, 0.4);
+   border-radius: 24px;
+   padding: 7px 22px;
+   box-shadow: 0 4px 18px rgba(179, 94, 116, 0.16);
+   backdrop-filter: blur(8px);
+   z-index: 6;
 }
 
 .date-separator-line {
    flex: 1;
-   max-width: 100px;
-   height: 1px;
-   background: linear-gradient(90deg, transparent, var(--theme-pink-primary), transparent);
+   max-width: 90px;
+   height: 1.5px;
+   background: linear-gradient(90deg, transparent, rgba(212, 130, 150, 0.65), transparent);
 }
 
 .date-separator-text {
    font-family: var(--font-serif-luxury);
-   font-size: 14px;
+   font-size: 13.5px;
    font-weight: 700;
-   letter-spacing: 0.08em;
+   letter-spacing: 0.12em;
    text-transform: uppercase;
    color: var(--theme-pink-dark);
    background: var(--rose-grey-gradient);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    white-space: nowrap;
+}
+
+/* Haldi Tiny Yellow / Turmeric Sunshine Theme */
+.lotus-event-row.event-haldi .haldi-card {
+  background: linear-gradient(135deg, rgba(255, 253, 240, 0.98) 0%, rgba(254, 249, 215, 0.94) 100%);
+  border: 1.5px solid rgba(234, 179, 8, 0.65);
+  box-shadow: 0 10px 24px rgba(217, 130, 24, 0.14), 0 0 18px rgba(254, 240, 138, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.lotus-event-row.event-haldi .haldi-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.lotus-event-row.event-haldi .haldi-text {
+  color: #B45309;
+  background: linear-gradient(135deg, #B45309 0%, #D97706 60%, #92400E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.haldi-sun-icon {
+  font-size: 13px;
+  color: #F59E0B;
+  -webkit-text-fill-color: #F59E0B;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.6));
+}
+
+.lotus-event-row.event-haldi .haldi-time {
+  color: #B45309;
+  font-weight: 600;
+}
+
+.haldi-attire-pill {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #92400E;
+  background: rgba(254, 240, 138, 0.7);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 10px;
+  padding: 2px 8px;
+  margin-top: 5px;
+}
+
+.lotus-event-row.event-haldi .haldi-node .haldi-dot {
+  background: linear-gradient(135deg, #F59E0B, #EAB308);
+  border-color: #FFFDF0;
+  box-shadow: 0 0 14px rgba(234, 179, 8, 0.9);
+}
+
+.lotus-event-row.event-haldi.active .haldi-card,
+.lotus-event-row.event-haldi:hover .haldi-card {
+  border-color: #D97706;
+  box-shadow: 0 14px 30px rgba(217, 130, 24, 0.22), 0 0 22px rgba(250, 204, 21, 0.45);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.lotus-event-row.event-haldi.active-current .haldi-card {
+  border-color: #D97706;
+  box-shadow: 0 14px 32px rgba(217, 130, 24, 0.25), 0 0 24px rgba(250, 204, 21, 0.5);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.lotus-event-row.event-haldi.active-current .haldi-dot {
+  background: #D97706;
+  transform: scale(1.45);
+  box-shadow: 0 0 18px rgba(217, 119, 6, 0.95);
+}
+
+/* Wedding Dress Code Note (Avoid Red on Marriage) */
+.wedding-dress-code-banner {
+  max-width: 440px;
+  margin: 6px auto 18px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(254, 245, 247, 0.94) 100%);
+  border: 1px dashed rgba(212, 130, 150, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(179, 94, 116, 0.12);
+  text-align: center;
+  position: relative;
+  z-index: 4;
+}
+
+.wedding-dress-code-banner .dress-code-badge {
+  display: inline-block;
+  font-family: var(--font-serif-luxury);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--theme-pink-dark);
+  background: rgba(212, 130, 150, 0.15);
+  padding: 3px 12px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+
+.wedding-dress-code-banner .dress-code-message {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #6C513F;
+  margin: 0;
+}
+
+.wedding-dress-code-banner .dress-code-message strong {
+  color: #B35E74;
+  font-weight: 600;
 }
 
 /* Event Row (Left, Center Node, Right) */
@@ -1600,8 +1754,10 @@ body.video-active #weiAudioBtn {
 .notes-cards-grid {
   display: flex;
   justify-content: center;
-  max-width: 540px;
+  gap: 20px;
+  max-width: 740px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .note-card {
@@ -1609,12 +1765,13 @@ body.video-active #weiAudioBtn {
   overflow: hidden;
   background: #FFFDF9;
   border: 1.8px solid var(--theme-grey-border);
-  border-radius: 14px;
-  padding: 30px 18px 24px;
+  border-radius: 16px;
+  padding: 30px 22px 24px;
   text-align: center;
   box-shadow: 0 8px 24px rgba(110, 90, 100, 0.08);
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-  width: 100%;
+  flex: 1 1 300px;
+  max-width: 350px;
 }
 
 .note-card:hover {
